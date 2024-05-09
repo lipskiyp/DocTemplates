@@ -1,0 +1,13 @@
+AUTH_KEY=aea6afd64eed70ebeb2155faf89cadc8a51ad8ada704329659f7d203831cc0f0  # Included on purpose as an exmample. To generate a new key run: openssl rand -hex 32
+AUTH_ALGORITHM=HS256
+AUTH_TOKEN_PATH=/api/users/token/
+AUTH_EXPIRE=1440
+
+POSTGRESQL_DB=Messenger
+POSTGRESQL_HOST=localhost  # host.docker.internal
+POSTGRESQL_PORT=5432
+POSTGRESQL_USER=postgres
+POSTGRESQL_PASSWORD=
+
+APP_HOST=0.0.0.0
+APP_PORT=8080

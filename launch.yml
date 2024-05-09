@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+  app_postgres_data: {}
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./compose/Dockerfile
+    image: app_server
+    container_name: app_server
+    restart: always
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.app
+    command: /start
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
