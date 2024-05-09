@@ -1,10 +1,8 @@
-from .messages.message import MessageController
-from .threads.thread import ThreadController
+from .templates.template import TemplateController
 from .users.user import UserController
 
 
 __all__ = [
-    "MessageController",
-    "ThreadController",
+    "TemplateController",
     "UserController"
 ]

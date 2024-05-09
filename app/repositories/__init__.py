@@ -1,10 +1,8 @@
-from .messages.message import MessageRepository
-from .threads.thread import ThreadRepository
+from .templates.template import TemplateRepository
 from .users.user import UserRepository
 
 
 __all__ = [
-    "MessageRepository",
-    "ThreadRepository",
+    "TemplateRepository",
     "UserRepository"
 ]

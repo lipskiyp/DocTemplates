@@ -1,10 +1,8 @@
-from .messages.message import Message
-from .threads.thread import Thread
+from .templates.template import Template
 from .users.user import User
 
 
 __all__ = [
-    "Message",
-    "Thread",
+    "Template",
     "User"
 ]

@@ -14,30 +14,16 @@ class ControllerFactory:
     """
     Database controller factory.
     """
-
-    @staticmethod
-    def get_message_controller(
-        session: AsyncSession = Depends(db_session)
-    ) -> controllers.MessageController:
-        """
-        Returns Message database controller.
-        """
-        return controllers.MessageController(
-            repository=repositories.MessageRepository(
-                session=session
-            )
-        )
-
     
     @staticmethod
-    def get_thread_controller(
+    def get_template_controller(
         session: AsyncSession = Depends(db_session)
-    ) -> controllers.ThreadController:
+    ) -> controllers.TemplateController:
         """
-        Returns Thread database controller.
+        Returns Template database controller.
         """
-        return controllers.ThreadController(
-            repository=repositories.ThreadRepository(
+        return controllers.TemplateController(
+            repository=repositories.TemplateRepository(
                 session=session
             )
         )

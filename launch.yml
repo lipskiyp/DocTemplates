@@ -17,6 +17,6 @@ services:
       - ./.envs/.app
     command: /start
     ports:
-      - "8080:8080"
+      - "1607:1607"
     expose:
-      - "8080"
+      - "1607"

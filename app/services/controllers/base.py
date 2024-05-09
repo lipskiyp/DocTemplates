@@ -46,25 +46,13 @@ class BaseControllerService(ABC):
     
 
     @property
-    def thread_controller(self) -> controllers.ThreadController:
+    def template_controller(self) -> controllers.TemplateController:
         """
-        Returns or initializes Thread controller instance. 
+        Returns or initializes Template controller instance. 
         """
         if not self._thread_controller: 
-            self._thread_controller = self.controller_factory.get_thread_controller(
+            self._thread_controller = self.controller_factory.get_template_controller(
                 session=self.session
             )
         return self._thread_controller
-    
-
-    @property
-    def message_controller(self) -> controllers.MessageController:
-        """
-        Returns or initializes Message controller instance. 
-        """
-        if not self._message_controller: 
-            self._message_controller = self.controller_factory.get_message_controller(
-                session=self.session
-            )
-        return self._message_controller
         

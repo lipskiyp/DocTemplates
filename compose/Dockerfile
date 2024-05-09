@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 COPY . /app
 
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 1607
 
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r ./requirements.txt

@@ -3,12 +3,11 @@ User SQLAlchemy ORM model.
 """
 
 from sqlalchemy import Boolean, String
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from typing import List
 
 from core.authentication import pwd_context
 from core.models import CommonBase
-from ..association_tables import users_and_threads
 
 
 class User(CommonBase):
@@ -44,13 +43,6 @@ class User(CommonBase):
         Boolean,
         nullable=False,
         default=True
-    )
-
-    threads = relationship(
-        "Thread",
-        secondary=users_and_threads,
-        back_populates="users",
-        passive_deletes=True,
     )
 
     __mapper_args__ = {

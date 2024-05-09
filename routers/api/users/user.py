@@ -11,14 +11,12 @@ from uuid import UUID
 
 from app.controllers import UserController
 from app.dependencies.authentication import get_current_active_user
-from app.exceptions import UnauthorizedException
 from app.factories.controllers import ControllerFactory
 from app.filters import UserFilter
-from app.services.controllers import UserControllerService
 from app.models import User
 from app.schemas import (
     UserCreateSchema, UserResponseSchema, UserUpdateSchema, 
-    TokenCreateSchema, ThreadResponseSchema, UserAddRemoveThreadsSchema
+    TokenCreateSchema
 )
 
 
@@ -184,39 +182,3 @@ async def delete_user_by_id(
     Deletes user by id.
     """
     return await controller.soft_delete_by({"id": id})
-
-
-@router.get(
-    "/me/threads/",
-    summary="Get all user's threads.",
-    tags=["users"],
-)
-async def get_users_in_thread(
-    current_user: User = Depends(get_current_active_user),
-    controller: UserController = Depends(
-        ControllerFactory.get_user_controller
-    )
-) -> List[ThreadResponseSchema]:
-    """
-    Returns all user's threads.
-    """
-    user = await controller.get_by({"id": current_user.id})
-    return await user.awaitable_attrs.threads
-
-
-@router.patch(
-    "/me/threads/",
-    summary="Add or remove threads to/from a user.",
-    tags=["users"],
-)
-async def add_or_remove_threads_from_user(
-    request: UserAddRemoveThreadsSchema,
-    current_user: User = Depends(get_current_active_user),
-    controller_service: UserControllerService = Depends(UserControllerService)
-) -> List[ThreadResponseSchema]:
-    """
-    Adds or removes threads to/from a user.
-    """
-    return await controller_service.add_or_remove_threads_from_user(
-        user_id=current_user.id, threads_add=request.add, threads_remove=request.remove
-    )
